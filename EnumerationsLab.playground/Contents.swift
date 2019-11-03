@@ -6,17 +6,29 @@ import UIKit
 
 // Your code here
 
+enum IOSDeviceType: String {
+    case iPhone = "8+"
+    case iPad
+    case iWatch
+}
+
+let myiPad = IOSDeviceType.iPad
+
 // Uncomment the lines below to test your solution
 
-//let myiPad = iOSDeviceType.iPad
-//assert(myiPad == .iPad)
+
+assert(myiPad == .iPad)
 
 // b. Adjust your code above so that iPhone and iPad have associated values of type String which represents the model number.  Create an instance of a .iPhone("8+") and assign it to a variable called myPhone
 
 // Your code here
 
-// Uncomment the lines below to test your solution
+let myPhone = IOSDeviceType.iPhone
 
+
+// Uncomment the lines below to test your solution
+ 
+//my code is below -
 //switch myPhone {
 //case let .iPhone(model): assert(model == "8+", "Was expecting a model type of 8+, but got \(model)")
 //default: fatalError("Was expecting an iPhone but got \(myPhone)")
@@ -50,9 +62,12 @@ enum Step {
 //
 //assert(endPosition == expectedEndPosition, "Was expecting \(expectedEndPosition) but got \(endPosition)")
 
-// Question Three
+// ******** Question Three *********
 
-// You are given a Coin enumeration which describes different coin values. Write a function called getTotalValue(from:) that takes in an array of tuples of type (number: Int, coin: Coin), and returns the total value of all coins in cents.
+// You are given a Coin enumeration which describes different coin values.
+// Write a function called getTotalValue(from:)
+// that takes in an array of tuples of type (number: Int, coin: Coin), and
+// returns the total value of all coins in cents.
 
 enum Coin: Int {
     case penny = 1
@@ -62,21 +77,39 @@ enum Coin: Int {
 }
 
 // Your function here
+// go through the enum with a switch statement
+func getTotalValue(from tuples: [(numberOfCoins: Int, typeOfCoin:Coin)]) -> Int {
+    var totalNumberOfCents = 0
+    for tuple in tuples {
+        switch tuple.typeOfCoin { // going through the enum with a switch statement -
+        case .penny:
+            totalNumberOfCents += Coin.penny.rawValue * tuple.numberOfCoins // keeping count with +=
+        case .nickle:
+            totalNumberOfCents += Coin.nickle.rawValue * tuple.numberOfCoins
+        case .dime:
+            totalNumberOfCents += Coin.dime.rawValue * tuple.numberOfCoins
+        case .quarter:
+            totalNumberOfCents += Coin.quarter.rawValue * tuple.numberOfCoins
+        }
+    }
+    return totalNumberOfCents
+}
+
 
 // Uncomment the lines below to test your solution
 
-//let coinArr: [(Int, Coin)] = [
-//    (10, .penny),
-//    (15, .nickle),
-//    (3, .quarter),
-//    (20, .penny),
-//    (3, .dime),
-//    (7, .quarter)
-//]
-//
-//let expectedTotal = 385
-//let total = getTotalValue(from: coinArr)
-//assert(total == expectedTotal, "Was expecting \(expectedTotal), but got \(total)")
+let coinArr: [(Int, Coin)] = [
+    (10, .penny),
+    (15, .nickle),
+    (3, .quarter),
+    (20, .penny),
+    (3, .dime),
+    (7, .quarter)
+]
+
+let expectedTotal = 385
+let total = getTotalValue(from: coinArr)
+assert(total == expectedTotal, "Was expecting \(expectedTotal), but got \(total)")
 
 // Question Four
 
@@ -84,6 +117,38 @@ enum Coin: Int {
 // Write a method inside Day that returns whether or not it is a weekday (Monday - Friday)
 
 // Your code here
+
+enum Day: String {
+    case monday
+    case tuesday
+    case wednesday
+    case thursday
+    case friday
+    case saturday
+    case sunday
+}
+
+func weekday (day: Day) {
+    switch day {
+    case .monday:
+    print("weekday")
+    case .tuesday :
+    print("weekday")
+    case .wednesday :
+    print("weekday")
+    case .thursday :
+    print("weekday")
+    case .friday :
+    print("weekday")
+    case .saturday :
+    print("not a weekday")
+    case .sunday :
+    print("not a weekday")
+    default:
+    print("not valid")
+    }
+    }
+
 
 // Uncomment the lines below to test your solution
 
